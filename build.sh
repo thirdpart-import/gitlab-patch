@@ -1,6 +1,6 @@
 # !/bin/sh
 
-gitlab_version=11.6.3
+gitlab_version=11.7.0
 
 #rm -rf app locale vendor patch.diff
 
