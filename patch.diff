@@ -12,7 +12,7 @@ index 68e14f0c2e..5294f1f391 100644
      else
        render :new
 diff --git a/app/controllers/admin/appearances_controller.rb b/app/controllers/admin/appearances_controller.rb
-index e3226c86b0..429c050274 100644
+index 189fee98aa..b7b09660de 100644
 --- a/app/controllers/admin/appearances_controller.rb
 +++ b/app/controllers/admin/appearances_controller.rb
 @@ -14,7 +14,7 @@ class Admin::AppearancesController < Admin::ApplicationController
@@ -259,7 +259,7 @@ index aa5eae7a47..492f9408de 100644
        format.js
      end
 diff --git a/app/controllers/admin/projects_controller.rb b/app/controllers/admin/projects_controller.rb
-index 550f29a58d..6050013f0d 100644
+index 3fa61c7b11..6ac5d055ee 100644
 --- a/app/controllers/admin/projects_controller.rb
 +++ b/app/controllers/admin/projects_controller.rb
 @@ -50,7 +50,7 @@ class Admin::ProjectsController < Admin::ApplicationController
@@ -285,7 +285,7 @@ index 774ce04d07..db9924c9ac 100644
    end
  
 diff --git a/app/controllers/admin/runners_controller.rb b/app/controllers/admin/runners_controller.rb
-index 0b6ff491c6..81c9223aed 100644
+index 8a00408001..572a5e5a2d 100644
 --- a/app/controllers/admin/runners_controller.rb
 +++ b/app/controllers/admin/runners_controller.rb
 @@ -34,17 +34,17 @@ class Admin::RunnersController < Admin::ApplicationController
@@ -346,10 +346,10 @@ index 18d22c95b6..60d4292572 100644
        spam_log.destroy
        head :ok
 diff --git a/app/controllers/admin/users_controller.rb b/app/controllers/admin/users_controller.rb
-index e93be1c1ba..38d2157a95 100644
+index bfa7c7d010..916cf2f621 100644
 --- a/app/controllers/admin/users_controller.rb
 +++ b/app/controllers/admin/users_controller.rb
-@@ -39,17 +39,17 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -41,17 +41,17 @@ class Admin::UsersController < Admin::ApplicationController
  
        Gitlab::AppLogger.info("User #{current_user.username} has started impersonating #{user.username}")
  
@@ -371,7 +371,7 @@ index e93be1c1ba..38d2157a95 100644
          end
  
        redirect_to admin_user_path(user)
-@@ -58,35 +58,35 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -60,35 +60,35 @@ class Admin::UsersController < Admin::ApplicationController
  
    def block
      if update_user { |user| user.block }
@@ -416,7 +416,7 @@ index e93be1c1ba..38d2157a95 100644
      end
    end
  
-@@ -94,7 +94,7 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -96,7 +96,7 @@ class Admin::UsersController < Admin::ApplicationController
      update_user { |user| user.disable_two_factor! }
  
      redirect_to admin_user_path(user),
@@ -425,7 +425,7 @@ index e93be1c1ba..38d2157a95 100644
    end
  
    def create
-@@ -107,7 +107,7 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -109,7 +109,7 @@ class Admin::UsersController < Admin::ApplicationController
  
      respond_to do |format|
        if @user.persisted?
@@ -434,7 +434,7 @@ index e93be1c1ba..38d2157a95 100644
          format.json { render json: @user, status: :created, location: @user }
        else
          format.html { render "new" }
-@@ -136,7 +136,7 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -138,7 +138,7 @@ class Admin::UsersController < Admin::ApplicationController
        end
  
        if result[:status] == :success
@@ -443,7 +443,7 @@ index e93be1c1ba..38d2157a95 100644
          format.json { head :ok }
        else
          # restore username to keep form action url.
-@@ -151,7 +151,7 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -153,7 +153,7 @@ class Admin::UsersController < Admin::ApplicationController
      user.delete_async(deleted_by: current_user, params: params.permit(:hard_delete))
  
      respond_to do |format|
@@ -452,7 +452,7 @@ index e93be1c1ba..38d2157a95 100644
        format.json { head :ok }
      end
    end
-@@ -162,10 +162,10 @@ class Admin::UsersController < Admin::ApplicationController
+@@ -164,10 +164,10 @@ class Admin::UsersController < Admin::ApplicationController
  
      respond_to do |format|
        if success
@@ -466,10 +466,10 @@ index e93be1c1ba..38d2157a95 100644
        end
      end
 diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
-index 26cd5dc801..20496db6d9 100644
+index b7eb6af6d6..e0a5f75e5c 100644
 --- a/app/controllers/application_controller.rb
 +++ b/app/controllers/application_controller.rb
-@@ -329,7 +329,7 @@ class ApplicationController < ActionController::Base
+@@ -340,7 +340,7 @@ class ApplicationController < ActionController::Base
  
    def require_email
      if current_user && current_user.temp_oauth_email? && session[:impersonator_id].nil?
@@ -505,7 +505,7 @@ index b3777fd2b0..21f76199ac 100644
      if create_merge_request?
        if merge_request_exists?
 diff --git a/app/controllers/concerns/issuable_actions.rb b/app/controllers/concerns/issuable_actions.rb
-index cd3fa641e8..486c9f529b 100644
+index 05d88429cf..dc51a70560 100644
 --- a/app/controllers/concerns/issuable_actions.rb
 +++ b/app/controllers/concerns/issuable_actions.rb
 @@ -78,7 +78,7 @@ module IssuableActions
@@ -629,12 +629,12 @@ index 5a439e6de7..51a2eb56c4 100644
      redirect_to status_import_fogbugz_path
    end
 diff --git a/app/controllers/import/gitea_controller.rb b/app/controllers/import/gitea_controller.rb
-index f067ef625a..2a6caf0b69 100644
+index 68ad8650db..2d1f5a45fc 100644
 --- a/app/controllers/import/gitea_controller.rb
 +++ b/app/controllers/import/gitea_controller.rb
-@@ -37,7 +37,7 @@ class Import::GiteaController < Import::GithubController
+@@ -46,7 +46,7 @@ class Import::GiteaController < Import::GithubController
    def provider_auth
-     if session[access_token_key].blank? || session[host_key].blank?
+     if session[access_token_key].blank? || provider_url.blank?
        redirect_to new_import_gitea_url,
 -        alert: 'You need to specify both an Access Token and a Host URL.'
 +        alert: '您需要指定个人访问令牌和主机 URL.'
@@ -880,7 +880,7 @@ index 4b6ec2697b..82bfcabbba 100644
  
      redirect_to profile_personal_access_tokens_path
 diff --git a/app/controllers/profiles/preferences_controller.rb b/app/controllers/profiles/preferences_controller.rb
-index 9400209573..f66f4dd65d 100644
+index 0227af2c26..6960bb9425 100644
 --- a/app/controllers/profiles/preferences_controller.rb
 +++ b/app/controllers/profiles/preferences_controller.rb
 @@ -11,13 +11,13 @@ class Profiles::PreferencesController < Profiles::ApplicationController
@@ -958,7 +958,7 @@ index ba94196b2f..fb80db3e9d 100644
        session[:skip_two_factor] = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
        redirect_to root_path
 diff --git a/app/controllers/profiles_controller.rb b/app/controllers/profiles_controller.rb
-index 15248d2d08..9273e6f807 100644
+index b9c52618d4..2aab050dd2 100644
 --- a/app/controllers/profiles_controller.rb
 +++ b/app/controllers/profiles_controller.rb
 @@ -15,7 +15,7 @@ class ProfilesController < Profiles::ApplicationController
@@ -989,7 +989,7 @@ index 15248d2d08..9273e6f807 100644
      redirect_to profile_personal_access_tokens_path
    end
 diff --git a/app/controllers/projects/application_controller.rb b/app/controllers/projects/application_controller.rb
-index e0677ce3fb..dcfeec7ab9 100644
+index 6504fd6c08..355f4cf288 100644
 --- a/app/controllers/projects/application_controller.rb
 +++ b/app/controllers/projects/application_controller.rb
 @@ -72,7 +72,7 @@ class Projects::ApplicationController < ApplicationController
@@ -1002,7 +1002,7 @@ index e0677ce3fb..dcfeec7ab9 100644
      end
    end
 diff --git a/app/controllers/projects/blob_controller.rb b/app/controllers/projects/blob_controller.rb
-index 77672e7d9f..65d60ed04b 100644
+index 0a33856a8d..f0175bdba3 100644
 --- a/app/controllers/projects/blob_controller.rb
 +++ b/app/controllers/projects/blob_controller.rb
 @@ -29,7 +29,7 @@ class Projects::BlobController < Projects::ApplicationController
@@ -1195,10 +1195,10 @@ index f1c9d0d0f7..7d0ef79230 100644
    end
  
 diff --git a/app/controllers/projects/tree_controller.rb b/app/controllers/projects/tree_controller.rb
-index 3fe300dcfc..7865091e57 100644
+index edebfc55c1..9115d7a450 100644
 --- a/app/controllers/projects/tree_controller.rb
 +++ b/app/controllers/projects/tree_controller.rb
-@@ -51,7 +51,7 @@ class Projects::TreeController < Projects::ApplicationController
+@@ -37,7 +37,7 @@ class Projects::TreeController < Projects::ApplicationController
    def create_dir
      return render_404 unless @commit_params.values.all?
  
@@ -1313,7 +1313,7 @@ index 4bd7d71e26..dbe0726107 100644
    # rubocop: enable CodeReuse/ActiveRecord
  
 diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
-index 9efa84b02f..eaa2a2cc0d 100644
+index ffa5719fef..c34ec4f03b 100644
 --- a/app/helpers/application_helper.rb
 +++ b/app/helpers/application_helper.rb
 @@ -58,10 +58,10 @@ module ApplicationHelper
@@ -1365,10 +1365,10 @@ index e635f60823..37411543a9 100644
    end
  
 diff --git a/app/helpers/blob_helper.rb b/app/helpers/blob_helper.rb
-index 23d6684a8e..0171cbe6fd 100644
+index 3e1bb9af5c..aa3d091635 100644
 --- a/app/helpers/blob_helper.rb
 +++ b/app/helpers/blob_helper.rb
-@@ -57,9 +57,9 @@ module BlobHelper
+@@ -58,9 +58,9 @@ module BlobHelper
      common_classes = "btn btn-#{btn_class}"
  
      if !on_top_of_branch?(project, ref)
@@ -1380,7 +1380,7 @@ index 23d6684a8e..0171cbe6fd 100644
      elsif can_modify_blob?(blob, project, ref)
        button_tag label, class: "#{common_classes}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
      elsif can?(current_user, :fork_project, project) && can?(current_user, :create_merge_request_in, project)
-@@ -72,8 +72,8 @@ module BlobHelper
+@@ -73,8 +73,8 @@ module BlobHelper
        project,
        ref,
        path,
@@ -1391,7 +1391,7 @@ index 23d6684a8e..0171cbe6fd 100644
        btn_class:  "default",
        modal_type: "upload"
      )
-@@ -84,8 +84,8 @@ module BlobHelper
+@@ -85,8 +85,8 @@ module BlobHelper
        project,
        ref,
        path,
@@ -1402,7 +1402,7 @@ index 23d6684a8e..0171cbe6fd 100644
        btn_class:  "remove",
        modal_type: "remove"
      )
-@@ -96,14 +96,14 @@ module BlobHelper
+@@ -97,14 +97,14 @@ module BlobHelper
    end
  
    def leave_edit_message
@@ -1420,7 +1420,7 @@ index 23d6684a8e..0171cbe6fd 100644
      end
    end
  
-@@ -183,20 +183,20 @@ module BlobHelper
+@@ -184,20 +184,20 @@ module BlobHelper
    end
  
    def copy_file_path_button(file_path)
@@ -1444,7 +1444,7 @@ index 23d6684a8e..0171cbe6fd 100644
      link_to icon('file-code-o'), blob_raw_path, class: 'btn btn-sm has-tooltip', target: '_blank', rel: 'noopener noreferrer', title: title, data: { container: 'body' }
    end
  
-@@ -212,15 +212,15 @@ module BlobHelper
+@@ -213,15 +213,15 @@ module BlobHelper
      when :collapsed
        "it is larger than #{number_to_human_size(viewer.collapse_limit)}"
      when :too_large
@@ -1463,7 +1463,7 @@ index 23d6684a8e..0171cbe6fd 100644
        end
      end
    end
-@@ -230,16 +230,16 @@ module BlobHelper
+@@ -231,16 +231,16 @@ module BlobHelper
      options = []
  
      if error == :collapsed
@@ -1503,7 +1503,7 @@ index 289cb44f1e..82ba334a32 100644
    end
  
 diff --git a/app/helpers/ci_status_helper.rb b/app/helpers/ci_status_helper.rb
-index 923a06a051..476e2bb41a 100644
+index 355b91a866..72774da9a3 100644
 --- a/app/helpers/ci_status_helper.rb
 +++ b/app/helpers/ci_status_helper.rb
 @@ -8,6 +8,33 @@
@@ -1635,7 +1635,7 @@ index 8d8c62f129..693a58835e 100644
          end
        end
 diff --git a/app/helpers/emails_helper.rb b/app/helpers/emails_helper.rb
-index dedc58f482..8b258d131a 100644
+index 96471d15aa..1b04fcbbee 100644
 --- a/app/helpers/emails_helper.rb
 +++ b/app/helpers/emails_helper.rb
 @@ -47,20 +47,20 @@ module EmailsHelper
@@ -1805,7 +1805,7 @@ index 4a9ed12316..c647418949 100644
    end
  
 diff --git a/app/helpers/issuables_helper.rb b/app/helpers/issuables_helper.rb
-index 1a47103497..369715dfd1 100644
+index 0622cdfc19..28ed5d503f 100644
 --- a/app/helpers/issuables_helper.rb
 +++ b/app/helpers/issuables_helper.rb
 @@ -55,7 +55,7 @@ module IssuablesHelper
@@ -1916,7 +1916,7 @@ index 957ab06b0c..a35deacda2 100644
  
      names << "#{awards.size - names.size} more." if awards.size > names.size
 diff --git a/app/helpers/labels_helper.rb b/app/helpers/labels_helper.rb
-index 39f661b5f0..e291216177 100644
+index bd53add80c..b241be78d9 100644
 --- a/app/helpers/labels_helper.rb
 +++ b/app/helpers/labels_helper.rb
 @@ -176,13 +176,13 @@ module LabelsHelper
@@ -1975,7 +1975,7 @@ index 11d5591d50..fe54eb9be1 100644
    end
  
 diff --git a/app/helpers/merge_requests_helper.rb b/app/helpers/merge_requests_helper.rb
-index 23d7aa427b..fdef7c782b 100644
+index 991ca42c44..4c1a2d0365 100644
 --- a/app/helpers/merge_requests_helper.rb
 +++ b/app/helpers/merge_requests_helper.rb
 @@ -42,9 +42,9 @@ module MergeRequestsHelper
@@ -2033,7 +2033,7 @@ index 50aec83b86..c5e6c3f438 100644
      end
    end
 diff --git a/app/helpers/notes_helper.rb b/app/helpers/notes_helper.rb
-index aaf38cbfe7..e676ea5f92 100644
+index a50137bea3..7a91c77511 100644
 --- a/app/helpers/notes_helper.rb
 +++ b/app/helpers/notes_helper.rb
 @@ -52,7 +52,7 @@ module NotesHelper
@@ -2057,7 +2057,7 @@ index aaf38cbfe7..e676ea5f92 100644
  
    def note_max_access_for_user(note)
 diff --git a/app/helpers/preferences_helper.rb b/app/helpers/preferences_helper.rb
-index bc1742e816..b9a7b5ad05 100644
+index 766508b660..9da50dfd62 100644
 --- a/app/helpers/preferences_helper.rb
 +++ b/app/helpers/preferences_helper.rb
 @@ -4,8 +4,8 @@
@@ -2407,7 +2407,7 @@ index 6bd78336ed..e343d243db 100644
  
    def show_todo_state?(todo)
 diff --git a/app/helpers/tree_helper.rb b/app/helpers/tree_helper.rb
-index e2879bfdcf..f94080223a 100644
+index c5bab877c0..47f04527aa 100644
 --- a/app/helpers/tree_helper.rb
 +++ b/app/helpers/tree_helper.rb
 @@ -86,13 +86,13 @@ module TreeHelper
@@ -2486,10 +2486,10 @@ index 712f0f808d..902f1e0a40 100644
    end
  
 diff --git a/app/mailers/abuse_report_mailer.rb b/app/mailers/abuse_report_mailer.rb
-index e032f56891..6d9831a09a 100644
+index e0aa66e6de..070bffccaf 100644
 --- a/app/mailers/abuse_report_mailer.rb
 +++ b/app/mailers/abuse_report_mailer.rb
-@@ -8,7 +8,7 @@ class AbuseReportMailer < BaseMailer
+@@ -12,7 +12,7 @@ class AbuseReportMailer < BaseMailer
  
      mail(
        to:       Gitlab::CurrentSettings.admin_notification_email,
@@ -2499,10 +2499,10 @@ index e032f56891..6d9831a09a 100644
    end
  
 diff --git a/app/mailers/email_rejection_mailer.rb b/app/mailers/email_rejection_mailer.rb
-index 45fc5a6c38..2bbd67ff2f 100644
+index d743533b1b..90471f661f 100644
 --- a/app/mailers/email_rejection_mailer.rb
 +++ b/app/mailers/email_rejection_mailer.rb
-@@ -9,7 +9,7 @@ class EmailRejectionMailer < BaseMailer
+@@ -13,7 +13,7 @@ class EmailRejectionMailer < BaseMailer
  
      headers = {
        to: @original_message.from,
@@ -2562,10 +2562,10 @@ index 2500622caa..4e2f1fe4d7 100644
  
      def repository_cleanup_success_email(project, user)
 diff --git a/app/mailers/repository_check_mailer.rb b/app/mailers/repository_check_mailer.rb
-index 145169be8a..20b04e8664 100644
+index a24d3476d0..e2e8496d6b 100644
 --- a/app/mailers/repository_check_mailer.rb
 +++ b/app/mailers/repository_check_mailer.rb
-@@ -5,14 +5,14 @@ class RepositoryCheckMailer < BaseMailer
+@@ -9,14 +9,14 @@ class RepositoryCheckMailer < BaseMailer
    def notify(failed_count)
      @message =
        if failed_count == 1
@@ -2802,10 +2802,10 @@ index 6a35bca72c..21c6cf3fcc 100644
    end
  
 diff --git a/app/models/issue.rb b/app/models/issue.rb
-index 182c5d3d4b..56b90cfa7b 100644
+index deab53d25e..6c013da0aa 100644
 --- a/app/models/issue.rb
 +++ b/app/models/issue.rb
-@@ -198,6 +198,17 @@ class Issue < ActiveRecord::Base
+@@ -200,6 +200,17 @@ class Issue < ActiveRecord::Base
      project
    end
  
@@ -2893,10 +2893,10 @@ index 5372c6084f..b37f90418c 100644
      source
    end
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
-index 0e49fd3c62..2c71ac7ed9 100644
+index acf80addc6..e9220b23f0 100644
 --- a/app/models/merge_request.rb
 +++ b/app/models/merge_request.rb
-@@ -622,7 +622,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -629,7 +629,7 @@ class MergeRequest < ActiveRecord::Base
      return true unless source_project_missing?
  
      errors.add :validate_fork,
@@ -2905,7 +2905,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
    end
  
    def merge_ongoing?
-@@ -898,7 +898,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -915,7 +915,7 @@ class MergeRequest < ActiveRecord::Base
      if target_project
        target_project.full_path
      else
@@ -2914,7 +2914,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
      end
    end
  
-@@ -906,7 +906,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -923,7 +923,7 @@ class MergeRequest < ActiveRecord::Base
      if source_project
        source_project.full_path
      else
@@ -2923,7 +2923,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
      end
    end
  
-@@ -914,7 +914,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -931,7 +931,7 @@ class MergeRequest < ActiveRecord::Base
      if source_project && source_project.namespace
        source_project.namespace.full_path
      else
@@ -2932,7 +2932,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
      end
    end
  
-@@ -922,7 +922,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -939,7 +939,7 @@ class MergeRequest < ActiveRecord::Base
      if target_project && target_project.namespace
        target_project.namespace.full_path
      else
@@ -2941,7 +2941,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
      end
    end
  
-@@ -944,16 +944,16 @@ class MergeRequest < ActiveRecord::Base
+@@ -961,16 +961,16 @@ class MergeRequest < ActiveRecord::Base
      end
  
      message = [
@@ -2961,7 +2961,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
  
      message.join("\n\n")
    end
-@@ -1050,14 +1050,18 @@ class MergeRequest < ActiveRecord::Base
+@@ -1067,14 +1067,18 @@ class MergeRequest < ActiveRecord::Base
  
    def state_human_name
      if merged?
@@ -2984,7 +2984,7 @@ index 0e49fd3c62..2c71ac7ed9 100644
      if merged?
        "git-merge"
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 26cfdc5ef3..d701720af1 100644
+index d6f94cad1f..9679fcc61e 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -4,10 +4,10 @@ class Milestone < ActiveRecord::Base
@@ -3121,7 +3121,7 @@ index 43edfde851..be7f8eb357 100644
  
    def self.to_param
 diff --git a/app/models/project_services/campfire_service.rb b/app/models/project_services/campfire_service.rb
-index 1d7877a1fb..b20314fd47 100644
+index ad26e42a21..4fef9bc105 100644
 --- a/app/models/project_services/campfire_service.rb
 +++ b/app/models/project_services/campfire_service.rb
 @@ -9,7 +9,7 @@ class CampfireService < Service
@@ -3236,119 +3236,8 @@ index 76624263aa..c0330790c6 100644
    end
  
    def self.to_param
-diff --git a/app/models/project_services/hipchat_service.rb b/app/models/project_services/hipchat_service.rb
-index a69b7b4c4b..7aaa43745e 100644
---- a/app/models/project_services/hipchat_service.rb
-+++ b/app/models/project_services/hipchat_service.rb
-@@ -26,7 +26,7 @@ class HipchatService < Service
-   end
- 
-   def description
--    'Private group chat and IM'
-+    '私人团队聊天和 IM'
-   end
- 
-   def self.to_param
-@@ -104,7 +104,7 @@ class HipchatService < Service
-   end
- 
-   def create_push_message(push)
--    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? 'tag' : 'branch'
-+    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? '标签' : '分支'
-     ref = Gitlab::Git.ref_name(push[:ref])
- 
-     before = push[:before]
-@@ -114,23 +114,23 @@ class HipchatService < Service
-     message << "#{push[:user_name]} "
- 
-     if Gitlab::Git.blank_ref?(before)
--      message << "pushed new #{ref_type} <a href=\""\
-+      message << "推送了新的 #{ref_type} <a href=\""\
-                  "#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"\
--                 " to #{project_link}\n"
-+                 " 到 #{project_link}\n"
-     elsif Gitlab::Git.blank_ref?(after)
--      message << "removed #{ref_type} <b>#{ref}</b> from <a href=\"#{project.web_url}\">#{project_name}</a> \n"
-+      message << "删除了 <a href=\"#{project.web_url}\">#{project_name}</a> 的 #{ref_type} <b>#{ref}</b>\n"
-     else
--      message << "pushed to #{ref_type} <a href=\""\
--                  "#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a> "
--      message << "of <a href=\"#{project.web_url}\">#{project.full_name.gsub!(/\s/, '')}</a> "
--      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">Compare changes</a>)"
-+      message << "推送了 #{ref_type} <a href=\""\
-+                  "#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a> 的 "
-+      message << "<a href=\"#{project.web_url}\">#{project.full_name.gsub!(/\s/, '')}</a> "
-+      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">比较</a>)"
- 
-       push[:commits].take(MAX_COMMITS).each do |commit|
-         message << "<br /> - #{render_line(commit[:message])} (<a href=\"#{commit[:url]}\">#{commit[:id][0..5]}</a>)"
-       end
- 
-       if push[:commits].count > MAX_COMMITS
--        message << "<br />... #{push[:commits].count - MAX_COMMITS} more commits"
-+        message << "<br />... #{push[:commits].count - MAX_COMMITS} 次更多提交"
-       end
-     end
- 
-@@ -213,25 +213,25 @@ class HipchatService < Service
-       commit_id = commit_attr[:id]
-       subject_desc = commit_id
-       subject_desc = Commit.truncate_sha(subject_desc)
--      subject_type = "commit"
-+      subject_type = "提交"
-       title = format_title(commit_attr[:message])
-     when "Issue"
-       subj_attr = HashWithIndifferentAccess.new(data[:issue])
-       subject_id = subj_attr[:iid]
-       subject_desc = "##{subject_id}"
--      subject_type = "issue"
-+      subject_type = "问题"
-       title = format_title(subj_attr[:title])
-     when "MergeRequest"
-       subj_attr = HashWithIndifferentAccess.new(data[:merge_request])
-       subject_id = subj_attr[:iid]
-       subject_desc = "!#{subject_id}"
--      subject_type = "merge request"
-+      subject_type = "合并请求"
-       title = format_title(subj_attr[:title])
-     when "Snippet"
-       subj_attr = HashWithIndifferentAccess.new(data[:snippet])
-       subject_id = subj_attr[:id]
-       subject_desc = "##{subject_id}"
--      subject_type = "snippet"
-+      subject_type = "代码片段"
-       title = format_title(subj_attr[:title])
-     end
- 
-@@ -246,7 +246,7 @@ class HipchatService < Service
-   def create_pipeline_message(data)
-     pipeline_attributes = data[:object_attributes]
-     pipeline_id = pipeline_attributes[:id]
--    ref_type = pipeline_attributes[:tag] ? 'tag' : 'branch'
-+    ref_type = pipeline_attributes[:tag] ? '标签' : '分支'
-     ref = pipeline_attributes[:ref]
-     user_name = (data[:user] && data[:user][:name]) || 'API'
-     status = pipeline_attributes[:status]
-@@ -255,7 +255,7 @@ class HipchatService < Service
-     branch_link = "<a href=\"#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"
-     pipeline_url = "<a href=\"#{project_url}/pipelines/#{pipeline_id}\">##{pipeline_id}</a>"
- 
--    "#{project_link}: Pipeline #{pipeline_url} of #{branch_link} #{ref_type} by #{user_name} #{humanized_status(status)} in #{duration} second(s)"
-+    "#{project_link}: 流水线 #{pipeline_url} #{ref_type} #{branch_link} 作者 #{user_name} 作业 #{humanized_status(status)} 用时 #{duration} 秒"
-   end
- 
-   def message_color(data)
-@@ -292,7 +292,7 @@ class HipchatService < Service
-   def humanized_status(status)
-     case status
-     when 'success'
--      'passed'
-+      '成功'
-     else
-       status
-     end
 diff --git a/app/models/project_services/irker_service.rb b/app/models/project_services/irker_service.rb
-index 83fd9a3443..f4a2d53abe 100644
+index fb76bc89c9..7385f8a480 100644
 --- a/app/models/project_services/irker_service.rb
 +++ b/app/models/project_services/irker_service.rb
 @@ -11,12 +11,11 @@ class IrkerService < Service
@@ -3393,7 +3282,7 @@ index f54497fc6d..b53d419aa9 100644
      log_info(message)
      result
 diff --git a/app/models/project_services/jira_service.rb b/app/models/project_services/jira_service.rb
-index 9066a0b7f1..61d3fa9560 100644
+index f7064d5aae..6ccf46b816 100644
 --- a/app/models/project_services/jira_service.rb
 +++ b/app/models/project_services/jira_service.rb
 @@ -86,7 +86,7 @@ class JiraService < IssueTrackerService
@@ -3406,7 +3295,7 @@ index 9066a0b7f1..61d3fa9560 100644
    end
  
 diff --git a/app/models/project_services/kubernetes_service.rb b/app/models/project_services/kubernetes_service.rb
-index f69edd6000..0e38a4c7cf 100644
+index 4cf3a7f3d8..c4d3e1a932 100644
 --- a/app/models/project_services/kubernetes_service.rb
 +++ b/app/models/project_services/kubernetes_service.rb
 @@ -53,7 +53,7 @@ class KubernetesService < DeploymentService
@@ -3575,7 +3464,7 @@ index 482808255f..9754c0e493 100644
  
    def self.to_param
 diff --git a/app/models/project_services/slack_slash_commands_service.rb b/app/models/project_services/slack_slash_commands_service.rb
-index 6c82e08823..bb271c80ac 100644
+index 6a454070fe..08fbd31a9a 100644
 --- a/app/models/project_services/slack_slash_commands_service.rb
 +++ b/app/models/project_services/slack_slash_commands_service.rb
 @@ -4,11 +4,11 @@ class SlackSlashCommandsService < SlashCommandsService
@@ -3648,10 +3537,10 @@ index f23ddd64fe..cdb768f2b0 100644
      # Searches for snippets with a matching title or file name.
      #
 diff --git a/app/models/todo.rb b/app/models/todo.rb
-index d9b86d941b..1a27a21a9d 100644
+index 2b0dee875a..daac49a5c7 100644
 --- a/app/models/todo.rb
 +++ b/app/models/todo.rb
-@@ -174,6 +174,21 @@ class Todo < ActiveRecord::Base
+@@ -181,6 +181,21 @@ class Todo < ActiveRecord::Base
      end
    end
  
@@ -3725,10 +3614,10 @@ index fbf71f0283..453cdd98da 100644
      end
    end
 diff --git a/app/services/commits/create_service.rb b/app/services/commits/create_service.rb
-index 34593e12bd..1572fcf54b 100644
+index bb34a3d335..ad6d59e2e2 100644
 --- a/app/services/commits/create_service.rb
 +++ b/app/services/commits/create_service.rb
-@@ -54,7 +54,7 @@ module Commits
+@@ -59,7 +59,7 @@ module Commits
        allowed = ::Gitlab::UserAccess.new(current_user, project: project).can_push_to_branch?(@branch_name)
  
        unless allowed
@@ -3737,17 +3626,17 @@ index 34593e12bd..1572fcf54b 100644
        end
      end
  
-@@ -66,7 +66,7 @@ module Commits
+@@ -71,7 +71,7 @@ module Commits
  
-     def validate_branch_existance!
-       if !project.empty_repo? && different_branch? && repository.branch_exists?(@branch_name)
+     def validate_branch_existence!
+       if !project.empty_repo? && different_branch? && repository.branch_exists?(@branch_name) && !force?
 -        raise_error("A branch called '#{@branch_name}' already exists. Switch to that branch in order to make changes")
 +        raise_error("分支 '#{@branch_name}' 已经存在。 切换到该分支进行修改。")
        end
      end
  
-@@ -74,7 +74,7 @@ module Commits
-       result = ValidateNewBranchService.new(project, current_user).execute(@branch_name)
+@@ -79,7 +79,7 @@ module Commits
+       result = ValidateNewBranchService.new(project, current_user).execute(@branch_name, force: force?)
  
        if result[:status] == :error
 -        raise_error("Something went wrong when we tried to create '#{@branch_name}' for you: #{result[:message]}")
@@ -3818,7 +3707,7 @@ index d03137b63b..c237c06fc6 100644
  
        if @project
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index ec6c306227..c801b359f3 100644
+index ea8ac7e465..48d17ff772 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -21,11 +21,11 @@ module SystemNoteService
@@ -4209,7 +4098,7 @@ index cc29657a43..9a2fb252f8 100644
 -        %h4 There are no abuse reports! #{emoji_icon('tada')}
 +        %h4 没有违规举报！ #{emoji_icon('tada')}
 diff --git a/app/views/admin/appearances/_form.html.haml b/app/views/admin/appearances/_form.html.haml
-index 77e84abd76..318943d1d6 100644
+index a5f34d0dab..2371d8bb19 100644
 --- a/app/views/admin/appearances/_form.html.haml
 +++ b/app/views/admin/appearances/_form.html.haml
 @@ -4,22 +4,22 @@
@@ -4239,7 +4128,7 @@ index 77e84abd76..318943d1d6 100644
    %hr
    .row
      .col-lg-4.profile-settings-sidebar
-@@ -27,70 +27,70 @@
+@@ -27,71 +27,71 @@
  
      .col-lg-8
        .form-group
@@ -4262,6 +4151,7 @@ index 77e84abd76..318943d1d6 100644
 -            Images with incorrect dimensions are not resized automatically, and may result in unexpected behavior.
 +            尺寸不正确的图像不会自动调整大小，并可能导致意外的行为。
  
+   = render partial: 'admin/appearances/system_header_footer_form', locals: { form: f }
  
    %hr
    .row
@@ -6111,7 +6001,7 @@ index e4c0382a43..a0e1eda617 100644
              %ol
                - klass.read_latest.each do |line|
 diff --git a/app/views/admin/projects/_projects.html.haml b/app/views/admin/projects/_projects.html.haml
-index 50296a2afe..44303cdc65 100644
+index 5bc695aa7b..a15bd89020 100644
 --- a/app/views/admin/projects/_projects.html.haml
 +++ b/app/views/admin/projects/_projects.html.haml
 @@ -35,6 +35,6 @@
@@ -6414,7 +6304,7 @@ index adfc67d66d..64cae5f950 100644
 -      No profiles found
 +      没找到请求配置。
 diff --git a/app/views/admin/runners/_runner.html.haml b/app/views/admin/runners/_runner.html.haml
-index ec57eb1ed0..e3191616eb 100644
+index ecf2b1d60b..96c6c17668 100644
 --- a/app/views/admin/runners/_runner.html.haml
 +++ b/app/views/admin/runners/_runner.html.haml
 @@ -3,15 +3,15 @@
@@ -7361,7 +7251,7 @@ index ae67192cbc..c076e1f11a 100644
    .nav-controls
      = render 'shared/projects/search_form'
 diff --git a/app/views/dashboard/_snippets_head.html.haml b/app/views/dashboard/_snippets_head.html.haml
-index 8d99f84755..5245e6714e 100644
+index a05d0190ef..c395e93bf3 100644
 --- a/app/views/dashboard/_snippets_head.html.haml
 +++ b/app/views/dashboard/_snippets_head.html.haml
 @@ -8,8 +8,8 @@
@@ -7607,31 +7497,8 @@ index 446b4715b2..0d54f297e1 100644
  
  %div{ class: container_class }
    = render "projects/last_push"
-diff --git a/app/views/dashboard/projects/starred.html.haml b/app/views/dashboard/projects/starred.html.haml
-index ad08409c8f..0d46306079 100644
---- a/app/views/dashboard/projects/starred.html.haml
-+++ b/app/views/dashboard/projects/starred.html.haml
-@@ -1,8 +1,8 @@
- - @hide_top_links = true
- - @no_container = true
- - breadcrumb_title "Projects"
--- page_title "Starred Projects"
--- header_title "Projects", dashboard_projects_path
-+- page_title "星标项目"
-+- header_title "项目", dashboard_projects_path
- 
- = render_if_exists "shared/gold_trial_callout"
- 
-@@ -13,5 +13,5 @@
-   - if params[:filter_projects] || any_projects?(@projects)
-     = render 'projects'
-   - else
--    %h3.page-title You don't have starred projects yet
--    %p.slead Visit project page and press on star icon and it will appear on this page.
-+    %h3.page-title 你还没有给任何项目加注星标
-+    %p.slead 访问项目页面然后按下星标图标即可将项目显示在此页面。
 diff --git a/app/views/dashboard/snippets/index.html.haml b/app/views/dashboard/snippets/index.html.haml
-index 6eb067da95..40d97d628b 100644
+index b649fe91c2..dfeca42f19 100644
 --- a/app/views/dashboard/snippets/index.html.haml
 +++ b/app/views/dashboard/snippets/index.html.haml
 @@ -1,6 +1,6 @@
@@ -7642,7 +7509,7 @@ index 6eb067da95..40d97d628b 100644
 +- header_title  "代码片段", dashboard_snippets_path
  
  = render 'dashboard/snippets_head'
- = render partial: 'snippets/snippets_scope_menu', locals: { include_private: true }
+ - if current_user.snippets.exists?
 diff --git a/app/views/dashboard/todos/_todo.html.haml b/app/views/dashboard/todos/_todo.html.haml
 index efe1fb99ef..bfb0ccf86e 100644
 --- a/app/views/dashboard/todos/_todo.html.haml
@@ -8076,7 +7943,7 @@ index 77ef103cc4..29fcf5f19d 100644
 +    已有账号和密码？
 +    = link_to "登录", new_session_path(:user, redirect_to_referer: 'yes')
 diff --git a/app/views/devise/shared/_signup_box.html.haml b/app/views/devise/shared/_signup_box.html.haml
-index 004a3528d4..dae49cf23e 100644
+index 9c7ca6ebbd..a00fe91ec3 100644
 --- a/app/views/devise/shared/_signup_box.html.haml
 +++ b/app/views/devise/shared/_signup_box.html.haml
 @@ -33,4 +33,4 @@
@@ -8400,7 +8267,7 @@ index 69914fccc4..0bf2e5ca7c 100644
 -            Create Merge Request
 +            创建合并请求
 diff --git a/app/views/explore/snippets/index.html.haml b/app/views/explore/snippets/index.html.haml
-index 94fc4ac21d..fd2c6d0941 100644
+index d23c8301b1..3fe6efaccb 100644
 --- a/app/views/explore/snippets/index.html.haml
 +++ b/app/views/explore/snippets/index.html.haml
 @@ -1,6 +1,6 @@
@@ -8490,7 +8357,7 @@ index cb7dab2633..22c6f4d102 100644
  %section.activities
    = render 'activities'
 diff --git a/app/views/groups/edit.html.haml b/app/views/groups/edit.html.haml
-index 39d0f62028..32062c70cc 100644
+index 2f63575790..b7b14c92c6 100644
 --- a/app/views/groups/edit.html.haml
 +++ b/app/views/groups/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -8798,7 +8665,7 @@ index 77fe88dacb..1bd312889f 100644
  %div{ class: [container_class, ("limit-container-width" unless fluid_layout)] }
    = render 'groups/home_panel'
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 28ffb2dd63..bb27c5edc2 100644
+index efb3815b25..a24d86c00a 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -3,9 +3,9 @@
@@ -9123,7 +8990,7 @@ index 28ffb2dd63..bb27c5edc2 100644
                  %tr
                    %td.shortcut
                      %kbd
-@@ -307,60 +307,60 @@
+@@ -307,72 +307,72 @@
                      \/
                      %kbd
                        shift j
@@ -9189,6 +9056,20 @@ index 28ffb2dd63..bb27c5edc2 100644
                      %kbd l
 -                  %td Change Label
 +                  %td 更改标记
+                 %tr
+                   %td.shortcut
+                     %kbd ]
+                     \/
+                     %kbd j
+-                  %td Move to next file
++                  %td 移动到下一个文件
+                 %tr
+                   %td.shortcut
+                     %kbd [
+                     \/
+                     %kbd k
+-                  %td Move to previous file
++                  %td 移动到上一个文件
                %tbody.hidden-shortcut{ style: 'display:none' }
                  %tr
                    %th
@@ -9972,10 +9853,10 @@ index 30ab578101..9e4b2dd6a9 100644
  - is_member = @member.source.users.include?(current_user)
  
 diff --git a/app/views/layouts/notify.text.erb b/app/views/layouts/notify.text.erb
-index 9dc490efa9..2b7b6faaec 100644
+index 248916fba6..31bd755c8a 100644
 --- a/app/views/layouts/notify.text.erb
 +++ b/app/views/layouts/notify.text.erb
-@@ -3,10 +3,10 @@
+@@ -5,12 +5,12 @@
  -- <%# signature marker %>
  <%  if @target_url -%>
  <%    if @reply_by_email -%>
@@ -9988,7 +9869,9 @@ index 9dc490efa9..2b7b6faaec 100644
  <%  end -%>
  
 -<%= "You're receiving this email because #{notification_reason_text(@reason)}." %>
-+<%= "因为您在 #{notification_reason_text(@reason)}拥有账号，所以会收到此邮件。" %>
++<%= "因为您在 #{notification_reason_text(@reason)} 拥有账号，所以会收到此邮件。" %>
+ 
+ <%= text_footer_message -%>
 diff --git a/app/views/notify/closed_issue_email.html.haml b/app/views/notify/closed_issue_email.html.haml
 index eb148d72da..111a2842a0 100644
 --- a/app/views/notify/closed_issue_email.html.haml
@@ -11346,26 +11229,10 @@ index 0b4b9841ea..54df887122 100644
 -          = link_to "I forgot my password", reset_profile_password_path, method: :put, class: "account-btn-link"
 +          = link_to "我忘记了自己的密码", reset_profile_password_path, method: :put, class: "account-btn-link"
 diff --git a/app/views/profiles/passwords/new.html.haml b/app/views/profiles/passwords/new.html.haml
-index d265f3c44b..8595308dc3 100644
+index 4b84835429..b513700737 100644
 --- a/app/views/profiles/passwords/new.html.haml
 +++ b/app/views/profiles/passwords/new.html.haml
-@@ -1,25 +1,25 @@
--- page_title    "New Password"
--- header_title  "New Password"
--%h3.page-title Set up new password
-+- page_title    "新密码"
-+- header_title  "新密码"
-+%h3.page-title 设置新密码
- %hr
- = form_for @user, url: profile_password_path, method: :post do |f|
-   %p.slead
--    Please set a new password before proceeding.
-+    请立即设置一个新密码。
-     %br
--    After a successful password update you will be redirected to login screen.
-+    密码被成功修改后将会重定向到登录页面。
- 
-   = form_errors(@user)
+@@ -13,13 +13,13 @@
  
    - unless @user.password_automatically_set?
      .form-group.row
@@ -11382,8 +11249,6 @@ index d265f3c44b..8595308dc3 100644
      .col-sm-10
        = f.password_field :password_confirmation, required: true, class: 'form-control'
    .form-actions
--    = f.submit 'Set new password', class: "btn btn-success"
-+    = f.submit '设置新密码', class: "btn btn-success"
 diff --git a/app/views/profiles/personal_access_tokens/index.html.haml b/app/views/profiles/personal_access_tokens/index.html.haml
 index 4c18398e3d..12c698fdca 100644
 --- a/app/views/profiles/personal_access_tokens/index.html.haml
@@ -11461,7 +11326,7 @@ index 4c18398e3d..12c698fdca 100644
 +        = link_to '重置令牌', [:reset, :incoming_email_token, :profile], method: :put, data: { confirm: '你确定要重置进入电子邮件令牌么？所以使用当前令牌的电子邮件地址都将停止工作。' }
 +        。
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index 1a9aca1f6b..e12c370297 100644
+index bfe1c3ddf3..0e3c94d430 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
 @@ -1,4 +1,4 @@
@@ -11866,22 +11731,9 @@ index 2b425f1838..a76001ff3e 100644
        - if gitlab_project_import_enabled?
          .import_gitlab_project.has-tooltip{ data: { container: 'body' } }
 diff --git a/app/views/projects/_md_preview.html.haml b/app/views/projects/_md_preview.html.haml
-index 03ba110450..e20b4e22fd 100644
+index 830cfa80d5..2d7a240c35 100644
 --- a/app/views/projects/_md_preview.html.haml
 +++ b/app/views/projects/_md_preview.html.haml
-@@ -12,10 +12,10 @@
-     %ul.nav.nav-tabs.nav-links.clearfix
-       %li.md-header-tab.active
-         %button.js-md-write-button{ tabindex: -1 }
--          Write
-+          编写
-       %li.md-header-tab
-         %button.js-md-preview-button{ tabindex: -1 }
--          Preview
-+          预览
- 
-       %li.md-header-toolbar.active
-         = render 'projects/blob/markdown_buttons', show_fullscreen_button: true
 @@ -29,8 +29,8 @@
      .referenced-users.hide
        %span
@@ -11895,10 +11747,10 @@ index 03ba110450..e20b4e22fd 100644
 +          人
 +        到此讨论。请谨慎行事。
 diff --git a/app/views/projects/_merge_request_merge_settings.html.haml b/app/views/projects/_merge_request_merge_settings.html.haml
-index f178c94e00..6617b188ec 100644
+index 6ac2e06afa..7034e9c79d 100644
 --- a/app/views/projects/_merge_request_merge_settings.html.haml
 +++ b/app/views/projects/_merge_request_merge_settings.html.haml
-@@ -4,20 +4,20 @@
+@@ -4,21 +4,21 @@
    .form-check.builds-feature{ class: ("hidden" if @project && @project.project_feature.send(:builds_access_level) == 0) }
      = form.check_box :only_allow_merge_if_pipeline_succeeds, class: 'form-check-input'
      = form.label :only_allow_merge_if_pipeline_succeeds, class: 'form-check-label' do
@@ -11909,6 +11761,7 @@ index f178c94e00..6617b188ec 100644
 -        Pipelines need to be configured to enable this feature.
 +        启用该选项需要先配置流水线。
          = link_to icon('question-circle'), help_page_path('user/project/merge_requests/merge_when_pipeline_succeeds', anchor: 'only-allow-merge-requests-to-be-merged-if-the-pipeline-succeeds'), target: '_blank'
+   = render_if_exists 'projects/merge_pipelines_settings', form: form
    .form-check
      = form.check_box :only_allow_merge_if_all_discussions_are_resolved, class: 'form-check-input'
      = form.label :only_allow_merge_if_all_discussions_are_resolved, class: 'form-check-label' do
@@ -12276,13 +12129,13 @@ index fb9d0b99d0..b433775bad 100644
 += link_to '了解该协议的更多信息', license.url, target: '_blank', rel: 'noopener noreferrer'
 \ No newline at end of file
 diff --git a/app/views/projects/blob/viewers/_loading.html.haml b/app/views/projects/blob/viewers/_loading.html.haml
-index 120c054033..15b4d5d9a6 100644
+index df1f3e4e01..84cd0de642 100644
 --- a/app/views/projects/blob/viewers/_loading.html.haml
 +++ b/app/views/projects/blob/viewers/_loading.html.haml
 @@ -1,2 +1,2 @@
  .text-center.prepend-top-default.append-bottom-default
--  = icon('spinner spin 2x', 'aria-hidden' => 'true', 'aria-label' => 'Loading content…')
-+  = icon('spinner spin 2x', 'aria-hidden' => 'true', 'aria-label' => '正在载入内容…')
+-  = icon('spinner spin 2x', 'aria-hidden' => 'true', 'aria-label' => 'Loading content…', class: 'qa-spinner')
++  = icon('spinner spin 2x', 'aria-hidden' => 'true', 'aria-label' => '正在载入内容…', class: 'qa-spinner')
 diff --git a/app/views/projects/blob/viewers/_loading_auxiliary.html.haml b/app/views/projects/blob/viewers/_loading_auxiliary.html.haml
 index c7dc9e3250..98cc539ace 100644
 --- a/app/views/projects/blob/viewers/_loading_auxiliary.html.haml
@@ -12410,60 +12263,6 @@ index 59b5b9f8a3..7de827e344 100644
                %td
                  %pre= job[:before_script].to_a.join('\n')
                  %pre= job[:script].to_a.join('\n')
-diff --git a/app/views/projects/commit/_ci_menu.html.haml b/app/views/projects/commit/_ci_menu.html.haml
-index 8b6e3e42ea..117d455cec 100644
---- a/app/views/projects/commit/_ci_menu.html.haml
-+++ b/app/views/projects/commit/_ci_menu.html.haml
-@@ -3,10 +3,10 @@
- %ul.nav-links.no-top.no-bottom.commit-ci-menu.nav.nav-tabs
-   = nav_link(path: 'commit#show') do
-     = link_to project_commit_path(@project, @commit.id) do
--      Changes
-+      变更
-       %span.badge.badge-pill= @diffs.size
-   - if any_pipelines
-     = nav_link(path: 'commit#pipelines') do
-       = link_to pipelines_project_commit_path(@project, @commit.id) do
--        Pipelines
-+        流水线
-         %span.badge.badge-pill.js-pipelines-mr-count= @commit.pipelines.size
-diff --git a/app/views/projects/commit/_verified_signature_badge.html.haml b/app/views/projects/commit/_verified_signature_badge.html.haml
-index 31408806be..8834a2e4b7 100644
---- a/app/views/projects/commit/_verified_signature_badge.html.haml
-+++ b/app/views/projects/commit/_verified_signature_badge.html.haml
-@@ -1,7 +1,6 @@
- - title = capture do
--  This commit was signed with a <strong>verified</strong> signature and the
--  committer email is verified to belong to the same user.
-+  这个提交由一个<strong>已验证</strong>的签名而签发。提交人的电子邮件确认属于同一用户。
- 
--- locals = { signature: signature, title: title, label: 'Verified', css_class: 'valid', icon: 'status_success_borderless', show_user: true }
-+- locals = { signature: signature, title: title, label: '已验证', css_class: 'valid', icon: 'status_success_borderless', show_user: true }
- 
- = render partial: 'projects/commit/signature_badge', locals: locals
-diff --git a/app/views/projects/commit/pipelines.html.haml b/app/views/projects/commit/pipelines.html.haml
-index c66ea873db..80724e5a95 100644
---- a/app/views/projects/commit/pipelines.html.haml
-+++ b/app/views/projects/commit/pipelines.html.haml
-@@ -1,4 +1,4 @@
--- page_title 'Pipelines', "#{@commit.title} (#{@commit.short_id})", 'Commits'
-+- page_title "流水线", "#{@commit.title} (#{@commit.short_id})", "提交"
- 
- = render 'commit_box'
- = render 'ci_menu'
-diff --git a/app/views/projects/commit/show.html.haml b/app/views/projects/commit/show.html.haml
-index fe9a8ac418..678a4f6721 100644
---- a/app/views/projects/commit/show.html.haml
-+++ b/app/views/projects/commit/show.html.haml
-@@ -4,7 +4,7 @@
- - container_class = !fluid_layout && diff_view == :inline ? 'container-limited' : ''
- - limited_container_width = fluid_layout ? '' : 'limit-container-width'
- - @content_class = limited_container_width
--- page_title        "#{@commit.title} (#{@commit.short_id})", "Commits"
-+- page_title        "#{@commit.title} (#{@commit.short_id})", "提交"
- - page_description  @commit.description
- 
- .container-fluid{ class: [limited_container_width, container_class] }
 diff --git a/app/views/projects/commits/_commit_list.html.haml b/app/views/projects/commits/_commit_list.html.haml
 index 6ed65d0720..58cf24228e 100644
 --- a/app/views/projects/commits/_commit_list.html.haml
@@ -12635,30 +12434,10 @@ index c9057f385d..f6eb1a7f6c 100644
        %ul
          - diff_files.each do |diff_file|
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index a58f736b5b..976dc2c24a 100644
+index a6a8ca489a..7024a51126 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
-@@ -1,5 +1,5 @@
--- breadcrumb_title "General Settings"
--- page_title "General"
-+- breadcrumb_title "常规设置"
-+- page_title "常规"
- - @content_class = "limit-container-width" unless fluid_layout
- - expanded = Rails.env.test?
- 
-@@ -9,9 +9,9 @@
-       %h4
-         General project
-       %button.btn.js-settings-toggle{ type: 'button' }
--        = expanded ? 'Collapse' : 'Expand'
-+        = expanded ? '折叠' : '展开'
-       %p
--        Update your project name, description, avatar, and other general settings.
-+        更新您的项目名称、描述、图标和其他常规设置。
-     .settings-content
-       .project-edit-errors
-       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "edit-project" }, authenticity_token: true do |f|
-@@ -20,18 +20,18 @@
+@@ -18,18 +18,18 @@
            .row
              .form-group.col-md-9
                = f.label :name, class: 'label-bold', for: 'project_name_edit' do
@@ -12681,7 +12460,7 @@ index a58f736b5b..976dc2c24a 100644
              = f.text_area :description, class: "form-control", rows: 3, maxlength: 250
  
            = render_if_exists 'projects/classification_policy_settings', f: f
-@@ -39,9 +39,9 @@
+@@ -37,9 +37,9 @@
          = render_if_exists 'shared/repository_size_limit_setting', form: f, type: :project
  
          .form-group
@@ -12693,7 +12472,7 @@ index a58f736b5b..976dc2c24a 100644
          %fieldset.features
            %h5.prepend-top-0= _("Project avatar")
            .form-group
-@@ -59,23 +59,23 @@
+@@ -57,7 +57,7 @@
              - if @project.avatar?
                %hr
                = link_to _('Remove avatar'), project_avatar_path(@project), data: { confirm: _("Avatar will be removed. Are you sure?") }, method: :delete, class: "btn btn-danger btn-inverted"
@@ -12702,18 +12481,7 @@ index a58f736b5b..976dc2c24a 100644
  
    %section.settings.sharing-permissions.no-animate#js-shared-permissions{ class: ('expanded' if expanded) }
      .settings-header
-       %h4
--        Permissions
-+        权限
-       %button.btn.js-settings-toggle{ type: 'button' }
--        = expanded ? 'Collapse' : 'Expand'
-+        = expanded ? '收起' : '展开'
-       %p
--        Enable or disable certain project features and choose access levels.
-+        启用或禁用某些项目功能并选择访问级别。
-     .settings-content
-       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "sharing-permissions-form" }, authenticity_token: true do |f|
-         %input{ name: 'update_section', type: 'hidden', value: 'js-shared-permissions' }
+@@ -71,7 +71,7 @@
          -# haml-lint:disable InlineJavaScript
          %script.js-project-permissions-form-data{ type: "application/json" }= project_permissions_panel_data_json(@project)
          .js-project-permissions-form
@@ -12722,18 +12490,7 @@ index a58f736b5b..976dc2c24a 100644
  
    = render_if_exists 'projects/issues_settings'
  
-@@ -84,16 +84,16 @@
-       %h4
-         Merge request
-       %button.btn.js-settings-toggle{ type: 'button' }
--        = expanded ? 'Collapse' : 'Expand'
-+        = expanded ? '收起' : '展开'
-       %p
--        Customize your merge request restrictions.
-+        自定义您的合并请求限制。
-     .settings-content
-       = render_if_exists 'shared/promotions/promote_mr_features'
- 
+@@ -87,7 +87,7 @@
        = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "merge-request-settings-form" }, authenticity_token: true do |f|
          %input{ name: 'update_section', type: 'hidden', value: 'js-merge-request-settings' }
          = render 'projects/merge_request_settings', form: f
@@ -12742,15 +12499,8 @@ index a58f736b5b..976dc2c24a 100644
  
    = render_if_exists 'projects/merge_request_approvals_settings', expanded: expanded
  
-@@ -118,51 +118,51 @@
-       %h4
-         Advanced
-       %button.btn.js-settings-toggle{ type: 'button' }
--        = expanded ? 'Collapse' : 'Expand'
-+        = expanded ? '折叠' : '展开'
-       %p
--        Perform advanced options such as housekeeping, archiving, renaming, transferring, or removing your project.
-+        执行高级选项，如管理、归档、重命名、转移或删除项目。
+@@ -115,46 +115,46 @@
+ 
      .settings-content
        .sub-section
 -        %h4 Housekeeping
@@ -12813,7 +12563,7 @@ index a58f736b5b..976dc2c24a 100644
              .form-group
                .input-group
                  .input-group-prepend
-@@ -170,58 +170,58 @@
+@@ -162,58 +162,58 @@
                      #{Gitlab::Utils.append_path(root_url, @project.namespace.full_path)}/
                  = f.text_field :path, class: 'form-control'
              %ul
@@ -13130,7 +12880,7 @@ index 38469ed477..f5b7a9e25f 100644
 -  When #{pluralized_mr_this} merge #{"request".pluralize(merge_request_count)} #{pluralized_mr_is} accepted, this issue will be closed automatically.
 +  当合并请求被接受后，此问题将会被自动关闭。
 diff --git a/app/views/projects/issues/_discussion.html.haml b/app/views/projects/issues/_discussion.html.haml
-index 4917f4b890..ad40beb499 100644
+index 42b6aaa263..bbfdc065e9 100644
 --- a/app/views/projects/issues/_discussion.html.haml
 +++ b/app/views/projects/issues/_discussion.html.haml
 @@ -2,8 +2,8 @@
@@ -13142,10 +12892,10 @@ index 4917f4b890..ad40beb499 100644
 +    = link_to '重新打开问题', issue_path(@issue, issue: {state_event: :reopen}, format: 'json'), data: {original_text: "重新打开问题", alternative_text: "评论并重新打开问题"}, class: "btn btn-nr btn-reopen btn-comment js-note-target-reopen #{issue_button_visibility(@issue, false)}", title: '重新打开问题'
 +    = link_to '关闭问题', issue_path(@issue, issue: {state_event: :close}, format: 'json'), data: {original_text: "关闭问题", alternative_text: "评论并关闭问题"}, class: "btn btn-nr btn-close btn-comment js-note-target-close #{issue_button_visibility(@issue, true)}", title: '关闭问题'
  
- %section.js-vue-notes-event
+ %section.issuable-discussion.js-vue-notes-event
    #js-vue-notes{ data: { notes_data: notes_data(@issue).to_json,
 diff --git a/app/views/projects/issues/_issue.html.haml b/app/views/projects/issues/_issue.html.haml
-index 31c72f2f75..3770c499ef 100644
+index ce7c7091c9..079cc28b58 100644
 --- a/app/views/projects/issues/_issue.html.haml
 +++ b/app/views/projects/issues/_issue.html.haml
 @@ -43,7 +43,7 @@
@@ -13177,7 +12927,7 @@ index fbd70cd190..d8ad9b9ec9 100644
      .btn-group.available.hidden
        %button.btn.js-create-merge-request.btn-success.btn-inverted{ type: 'button', data: { action: data_action } }
 diff --git a/app/views/projects/issues/_related_branches.html.haml b/app/views/projects/issues/_related_branches.html.haml
-index ffdd96870e..e749041cdc 100644
+index 6da4956a03..27195856f0 100644
 --- a/app/views/projects/issues/_related_branches.html.haml
 +++ b/app/views/projects/issues/_related_branches.html.haml
 @@ -1,6 +1,6 @@
@@ -13215,7 +12965,7 @@ index 9a081a42b6..a979ed5126 100644
  
  = render "form"
 diff --git a/app/views/projects/issues/show.html.haml b/app/views/projects/issues/show.html.haml
-index 653b7d4c6f..915d3efbd3 100644
+index 819d3c4ec7..71b6d1a72e 100644
 --- a/app/views/projects/issues/show.html.haml
 +++ b/app/views/projects/issues/show.html.haml
 @@ -1,7 +1,7 @@
@@ -13227,7 +12977,7 @@ index 653b7d4c6f..915d3efbd3 100644
  - page_description     @issue.description
  - page_card_attributes @issue.card_attributes
  
-@@ -21,14 +21,14 @@
+@@ -24,14 +24,14 @@
            = _("Closed")
      .issuable-status-box.status-box.status-box-open{ class: issue_button_visibility(@issue, true) }
        = sprite_icon('issue-open-m', size: 16, css_class: 'd-block d-sm-none')
@@ -13244,7 +12994,7 @@ index 653b7d4c6f..915d3efbd3 100644
  
      %a.btn.btn-default.float-right.d-block.d-sm-none.gutter-toggle.issuable-gutter-toggle.js-sidebar-toggle{ href: "#" }
        = icon('angle-double-left')
-@@ -36,30 +36,30 @@
+@@ -39,30 +39,30 @@
    .detail-page-header-actions.js-issuable-actions
      .clearfix.issue-btn-group.dropdown
        %button.btn.btn-default.float-left.d-md-none.d-lg-none.d-xl-none{ type: "button", data: { toggle: "dropdown" } }
@@ -13584,7 +13334,7 @@ index 15499c89ff..a2a6a71c86 100644
 +          = link_to '参考这个说明', help_page_path('user/project/merge_requests/index.md', anchor: "checkout-merge-requests-locally"), target: '_blank', rel: 'noopener noreferrer'
 +          将合并请求检出到本地。
 diff --git a/app/views/projects/merge_requests/_merge_request.html.haml b/app/views/projects/merge_requests/_merge_request.html.haml
-index ac29cd8f67..ed6becf4c1 100644
+index b8e0b66e27..a09c29b128 100644
 --- a/app/views/projects/merge_requests/_merge_request.html.haml
 +++ b/app/views/projects/merge_requests/_merge_request.html.haml
 @@ -41,11 +41,11 @@
@@ -13600,7 +13350,7 @@ index ac29cd8f67..ed6becf4c1 100644
 +            已关闭
          - if can?(current_user, :read_pipeline, merge_request.head_pipeline)
            %li.issuable-pipeline-status.d-none.d-sm-inline-block
-             = render_pipeline_status(merge_request.head_pipeline)
+             = render 'ci/status/icon', status: merge_request.head_pipeline.detailed_status(current_user)
 @@ -61,4 +61,4 @@
          = render 'shared/issuable_meta_data', issuable: merge_request
  
@@ -13710,7 +13460,7 @@ index 0839880713..2513f914ad 100644
 -    View file @{{conflictsData.shortCommitSha}}
 +    查看文件 @{{conflictsData.shortCommitSha}}
 diff --git a/app/views/projects/merge_requests/conflicts/_submit_form.html.haml b/app/views/projects/merge_requests/conflicts/_submit_form.html.haml
-index 8181267184..546aab3cc8 100644
+index 55c89f137c..524f4028ff 100644
 --- a/app/views/projects/merge_requests/conflicts/_submit_form.html.haml
 +++ b/app/views/projects/merge_requests/conflicts/_submit_form.html.haml
 @@ -21,4 +21,4 @@
@@ -14125,7 +13875,7 @@ index 73ea30e1d3..cb0ebbdc43 100644
        %p= link_to @project.pages_url, @project.pages_url
  
 diff --git a/app/views/projects/pages/_destroy.haml b/app/views/projects/pages/_destroy.haml
-index ae8c801b70..29b27d66a0 100644
+index 138e2864ba..29b27d66a0 100644
 --- a/app/views/projects/pages/_destroy.haml
 +++ b/app/views/projects/pages/_destroy.haml
 @@ -1,12 +1,12 @@
@@ -14143,7 +13893,7 @@ index ae8c801b70..29b27d66a0 100644
 -          = link_to 'Remove pages', project_pages_path(@project), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove"
 +          = link_to '删除网页', project_pages_path(@project), data: { confirm: '您确定要删除这个网页？'}, method: :delete, class: "btn btn-remove"
    - else
--    .nothing-here-block Only the project owner can remove pages
+-    .nothing-here-block Only project maintainers can remove pages
 +    .nothing-here-block 只有项目所有者可以删除网页
 diff --git a/app/views/projects/pages/_list.html.haml b/app/views/projects/pages/_list.html.haml
 index 2427b4d761..3c806bfe49 100644
@@ -14415,7 +14165,7 @@ index 67a6e8efae..619d24f58b 100644
 +        创建通配符
          %code
 diff --git a/app/views/projects/protected_branches/shared/_index.html.haml b/app/views/projects/protected_branches/shared/_index.html.haml
-index 539b184e5c..00675e60ae 100644
+index 539b184e5c..3e4bf99616 100644
 --- a/app/views/projects/protected_branches/shared/_index.html.haml
 +++ b/app/views/projects/protected_branches/shared/_index.html.haml
 @@ -3,20 +3,20 @@
@@ -14444,7 +14194,7 @@ index 539b184e5c..00675e60ae 100644
 +        %li 除了主程序员外，禁止其他所有人员推送
 +        %li 禁止<strong>任何人</strong> 强制推送此分支
 +        %li 禁止<strong>任何人</strong> 删除此分支
-+      %p 点击 #{link_to "保护分支", help_page_path("user/project/protected_branches")} 和 #{link_to "项目权限", help_page_path("user/permissions")}.
++      %p 点击 #{link_to "保护分支", help_page_path("user/project/protected_branches")} 和 #{link_to "项目权限", help_page_path("user/permissions")} 了解更多。
  
      - if can? current_user, :admin_project, @project
        = content_for :create_protected_branch
@@ -15441,7 +15191,7 @@ index 5c74e71b64..6c4c6f907b 100644
        %span.badge.badge-pill
          = limited_counter_with_delimiter(all_builds.finished)
 diff --git a/app/views/shared/deploy_keys/_form.html.haml b/app/views/shared/deploy_keys/_form.html.haml
-index 913c065e18..b2647748ad 100644
+index eb7808573b..f008fa08e8 100644
 --- a/app/views/shared/deploy_keys/_form.html.haml
 +++ b/app/views/shared/deploy_keys/_form.html.haml
 @@ -5,19 +5,19 @@
@@ -15462,7 +15212,7 @@ index 913c065e18..b2647748ad 100644
 -        = link_to 'here', help_page_path('ssh/README')
 +        在这里粘贴一个机器的公钥。具体如何生成该公钥请点看
 +        = link_to '这里', help_page_path('ssh/README')
-       = form.text_area :key, class: 'form-control thin_area', rows: 5
+       = form.text_area :key, class: 'form-control thin-area', rows: 5
    - else
 -    = form.label :fingerprint, class: 'col-form-label col-sm-2'
 +    = form.label :fingerprint, '指纹', class: 'col-form-label col-sm-2'
@@ -15815,7 +15565,7 @@ index 71123740ee..e1bcd467f7 100644
  
    = render 'shared/issuable/nav_links/all', page_context_word: page_context_word, counter: issuables_state_counter_text(type, :all, display_count)
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index 588659c7e9..723e713455 100644
+index f43be304e6..ccd933494d 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
 @@ -21,7 +21,7 @@
@@ -15836,7 +15586,7 @@ index 2c89217cad..7341d40ba7 100644
 -  = search_field_tag :search, params[:search], { id: 'issuable_search', placeholder: 'Filter by name ...', class: 'form-control issuable_search search-text-input input-short', spellcheck: false }
 +  = search_field_tag :search, params[:search], { id: 'issuable_search', placeholder: '按名称过滤 ...', class: 'form-control issuable_search search-text-input input-short', spellcheck: false }
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
-index 0520eda37a..21246725ea 100644
+index 9596c1df20..d1af7b74bb 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
 +++ b/app/views/shared/issuable/_sidebar.html.haml
 @@ -11,7 +11,7 @@
@@ -16563,12 +16313,12 @@ index 98b258d927..b7695fa0d7 100644
 -            Hide group projects
 +            隐藏群组项目
 diff --git a/app/views/shared/projects/_project.html.haml b/app/views/shared/projects/_project.html.haml
-index df17ae95e2..c1e4acffa6 100644
+index d2b1be29eb..dcb0d56cbd 100644
 --- a/app/views/shared/projects/_project.html.haml
 +++ b/app/views/shared/projects/_project.html.haml
-@@ -87,4 +87,4 @@
+@@ -89,4 +89,4 @@
              %span.icon-wrapper.pipeline-status
-               = render_project_pipeline_status(project.pipeline_status, tooltip_placement: 'top')
+               = render 'ci/status/icon', status: project.commit.last_pipeline.detailed_status(current_user), type: 'commit', tooltip_placement: 'top', path: pipeline_path
          .updated-note
 -          %span Updated #{updated_tooltip}
 +          %span 更新于 #{updated_tooltip}
@@ -16900,7 +16650,7 @@ index 211e3eafac..fa0c71cf02 100644
            - unless @user.website_url.blank?
              .profile-link-holder.middle-dot-divider
 diff --git a/config/application.rb b/config/application.rb
-index 92a3d031c6..fc285dd57a 100644
+index 6bdf61edfb..9b96599ac2 100644
 --- a/config/application.rb
 +++ b/config/application.rb
 @@ -58,7 +58,11 @@ module Gitlab
