@@ -2893,7 +2893,7 @@ index 5372c6084f..b37f90418c 100644
      source
    end
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
-index acf80addc6..e9220b23f0 100644
+index 06a86a1f36..a1ee395c26 100644
 --- a/app/models/merge_request.rb
 +++ b/app/models/merge_request.rb
 @@ -629,7 +629,7 @@ class MergeRequest < ActiveRecord::Base
