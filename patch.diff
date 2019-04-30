@@ -8739,7 +8739,7 @@ index b061f9c106..98fd1e8a25 100644
  
  = render template: 'notify/new_merge_request_email'
 diff --git a/app/views/notify/new_merge_request_email.html.haml b/app/views/notify/new_merge_request_email.html.haml
-index db23447dd3..1231a9ca6d 100644
+index 78de5548da..a528765bc2 100644
 --- a/app/views/notify/new_merge_request_email.html.haml
 +++ b/app/views/notify/new_merge_request_email.html.haml
 @@ -1,13 +1,13 @@
@@ -8749,7 +8749,7 @@ index db23447dd3..1231a9ca6d 100644
 +    #{link_to @merge_request.author_name, user_url(@merge_request.author)} 创建合并请求:
  
  %p.details
-   != merge_path_description(@merge_request, '&rarr;')
+   = merge_path_description(@merge_request, '→')
  
  - if @merge_request.assignee_id.present?
    %p
@@ -11547,7 +11547,7 @@ index 9a081a42b6..a979ed5126 100644
  
  = render "form"
 diff --git a/app/views/projects/issues/show.html.haml b/app/views/projects/issues/show.html.haml
-index 2c95ac6dbb..e2ba21e2fa 100644
+index f4d8aab8a8..71c477b39b 100644
 --- a/app/views/projects/issues/show.html.haml
 +++ b/app/views/projects/issues/show.html.haml
 @@ -1,7 +1,7 @@
