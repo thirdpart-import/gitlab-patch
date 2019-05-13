@@ -1736,7 +1736,7 @@ index 5372c6084f..b37f90418c 100644
      source
    end
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
-index d91dbe4bf4..b7627803a6 100644
+index 49c56ecafd..38abb4f626 100644
 --- a/app/models/merge_request.rb
 +++ b/app/models/merge_request.rb
 @@ -652,7 +652,7 @@ class MergeRequest < ApplicationRecord
@@ -1804,7 +1804,7 @@ index d91dbe4bf4..b7627803a6 100644
  
      message.join("\n\n")
    end
-@@ -1099,14 +1099,18 @@ class MergeRequest < ApplicationRecord
+@@ -1109,14 +1109,18 @@ class MergeRequest < ApplicationRecord
  
    def state_human_name
      if merged?
